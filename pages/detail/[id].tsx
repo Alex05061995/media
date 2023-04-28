@@ -30,7 +30,7 @@ const Detail = ({ postDetails }: IPropsDetails) => {
 
   const handleLike = async (like: boolean) => {
     if(userProfile) {
-      const {data} = await axios.put(`/api/like`, {
+      const {data} = await axios.put(`${BASE_URL}/api/like`, {
         userId: userProfile._id,
         postId: post._id,
         like
@@ -43,7 +43,7 @@ const Detail = ({ postDetails }: IPropsDetails) => {
     e.preventDefault();
     if(userProfile && comment) {
       setIsPostingComment(true);
-      const {data} = await axios.put(`/api/post/${post._id}`, {
+      const {data} = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
         userId: userProfile._id,
         comment
       })
@@ -161,7 +161,7 @@ export const getServerSideProps = async ({
 }: {
   params: { id: string };
 }) => {
-  const { data } = await axios.get(`/api/post/${id}`);
+  const { data } = await axios.get(`${BASE_URL}/api/post/${id}`);
 
 
   return {
